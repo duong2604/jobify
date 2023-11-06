@@ -7,6 +7,7 @@ import morgan from "morgan";
 import db from "./db/mongoose.js";
 import errorHandlerMiddleware from "./middleware/errorHandleMiddleware.js";
 import jobRoutes from "./routes/jobRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
@@ -15,6 +16,7 @@ app.use(express.json());
 
 // routes
 app.use("/api/v1/jobs", jobRoutes);
+app.use("/api/v1/auth", authRoutes);
 
 // middleware
 app.use("*", (req, res) => {
