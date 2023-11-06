@@ -9,13 +9,13 @@ import {
 
 const router = Router();
 
-router.get("/jobs", getAllJobs);
-router.post("/jobs", createJob);
-router.get("/jobs/:id", getJob);
-router.patch("/jobs/:id", updateJob);
-router.delete("/jobs/:id", deleteJob);
+router.get("/", getAllJobs);
+router.post("/", createJob);
+router.get("/:id", getJob);
+router.patch("/:id", updateJob);
+router.delete("/:id", deleteJob);
 
-// router.route("/jobs").get(getAllJobs).post(createJob);
-// router.route("/jobs/:id").get(getJob).patch(updateJob).delete(deleteJob);
+// router.route("/").get(getAllJobs).post(createJob);
+// router.route("/:id").get(getJob).patch(updateJob).delete(deleteJob);
 
 export default router;
