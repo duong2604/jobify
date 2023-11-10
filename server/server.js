@@ -22,10 +22,6 @@ if (process.env.NODE_ENV === "development") {
 app.use(express.json());
 app.use(cookieParser());
 
-app.get("/api/v1/test", (req, res) => {
-  res.json("test api");
-});
-
 app.use("/api/v1/jobs", authenticateUser, jobRoutes);
 app.use("/api/v1/users", authenticateUser, userRouter);
 app.use("/api/v1/auth", authRoutes);
