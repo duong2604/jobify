@@ -8,7 +8,6 @@ import { toast } from "react-toastify";
 export const loader = async () => {
   try {
     const { data } = await customFetch.get("/users/current-user");
-    console.log(data);
     return data;
   } catch (error) {
     return redirect("/");
@@ -20,7 +19,7 @@ const DashboardContext = createContext();
 const DashboardLayout = ({ isDarkThemeEnabled }) => {
   const navigate = useNavigate();
   const { user } = useLoaderData();
-  const [showSidebar, setShowSidebar] = useState(false);
+  const [showSidebar, setShowSidebar] = useState(true);
   const [isDarkTheme, setIsDarkTheme] = useState(isDarkThemeEnabled);
 
   const toggleDarkTheme = () => {
