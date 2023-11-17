@@ -6,6 +6,7 @@ dotenv.config();
 import morgan from "morgan";
 import db from "./db/mongoose.js";
 import cookieParser from "cookie-parser";
+import { v2 as cloudinary } from "cloudinary";
 
 // middleware
 import errorHandlerMiddleware from "./middleware/errorHandleMiddleware.js";
@@ -15,6 +16,20 @@ import { authenticateUser } from "./middleware/authMiddleware.js";
 import jobRoutes from "./routes/jobRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import userRouter from "./routes/userRouter.js";
+
+// public
+import { dirname } from "path";
+import { fileURLToPath } from "url";
+import path from "path";
+
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_API_KEY,
+  api_secret: process.env.CLOUD_API_SECRET,
+});
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+app.use(express.static(path.resolve(__dirname, "./public")));
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
