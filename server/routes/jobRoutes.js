@@ -5,6 +5,7 @@ import {
   createJob,
   updateJob,
   deleteJob,
+  showStats,
 } from "../controllers/jobControllers.js";
 import {
   validateJobInput,
@@ -16,6 +17,7 @@ const router = Router();
 
 router.get("/", getAllJobs);
 router.post("/", checkForTestUser, validateJobInput, createJob);
+router.get("/stats", showStats);
 router.get("/:id", validateIdParam, getJob);
 router.patch(
   "/:id",
