@@ -10,7 +10,7 @@
     "client": "cd client && npm run dev",
     "server": "cd server && npm run dev ",
     "dev": "concurrently --kill-others-on-fail \" npm run server\" \" npm run client\"",
-    "production": " npm run setup-client-app && npm run setup-node-app"
+    "build": " npm run setup-client-app && npm run setup-node-app"
   },
   "keywords": [],
   "author": "",
