@@ -5,12 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "setup-client-app": "npm i && cd client && npm i && npm run build",
+    "setup-client-app": "cd client && npm i && npm run build",
     "setup-node-app": "cd server && npm i && npm run dev",
-    "client": "cd client && npm run dev && npm build",
+    "client": "cd client && npm run dev",
     "server": "cd server && npm run dev ",
     "dev": "concurrently --kill-others-on-fail \" npm run server\" \" npm run client\"",
-    "production": "npm run setup-node-app && npm run setup-client-app"
+    "production": " npm run setup-client-app && npm run setup-node-app"
   },
   "keywords": [],
   "author": "",
