@@ -5,19 +5,22 @@ import { JOB_TYPE, JOB_STATUS } from "../utils/constants.js";
 import customFetch from "../utils/customFetch.js";
 import { toast } from "react-toastify";
 
-export const action = async ({ request }) => {
-  const formData = await request.formData();
-  const data = Object.fromEntries(formData);
+export const action =
+  (queryClient) =>
+  async ({ request }) => {
+    const formData = await request.formData();
+    const data = Object.fromEntries(formData);
 
-  try {
-    await customFetch.post("/jobs", data);
-    toast.success("Job added successfully");
-    return redirect("/dashboard/all-jobs");
-  } catch (error) {
-    toast.error(error?.response?.data?.msg);
-    return error;
-  }
-};
+    try {
+      await customFetch.post("/jobs", data);
+      toast.success("Job added successfully");
+      queryClient.invalidateQueries(["jobs"]);
+      return redirect("/dashboard/all-jobs");
+    } catch (error) {
+      toast.error(error?.response?.data?.msg);
+      return error;
+    }
+  };
 
 const AddJob = () => {
   const { user } = useOutletContext();
