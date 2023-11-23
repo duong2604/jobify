@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import { BigSidebar, SmallSidebar, Navbar } from "../components";
 import Wrapper from "../assets/wrappers/Dashboard";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import customFetch from "../utils/customFetch";
 import { toast } from "react-toastify";
 import Loading from "../components/Loading";
@@ -68,6 +68,11 @@ const DashboardLayout = ({ isDarkThemeEnabled, queryClient }) => {
       return Promise.reject(error);
     }
   );
+
+  useEffect(() => {
+    if (!isAuthError) return;
+    logoutUser();
+  }, [isAuthError]);
 
   return (
     <DashboardContext.Provider
